@@ -3,12 +3,29 @@ import fetch from "isomorphic-fetch";
 import styles from "../styles/Books.module.css";
 import Link from "next/link";
 import BookDetails from "../components/BookDetails";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SearchBar from "../components/SearchBar";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Books = ({ initialBooks }) => {
   const [books, setBooks] = useState(initialBooks);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = async (term) => {
+    try {
+      const response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${term}&maxResults=30&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY}`
+      );
+      const data = await response.json();
+      setSearchTerm(term);
+      setBooks(data.items || []);
+      console.log(data.items);
+    } catch (error) {
+      console.error("Erro ao buscar os livros:", error.message);
+      setBooks([]);
+    }
+  };
 
   const openModal = (book) => {
     setSelectedBook(book);
@@ -20,7 +37,17 @@ const Books = ({ initialBooks }) => {
 
   return (
     <div className={styles.booksContainer}>
-      <Header />
+      <div className={styles.booksContainer}>
+        <header header className={styles.header}>
+          <GiHamburgerMenu size={40} className={styles.icon} />
+          <img
+            className={styles.logo}
+            src="https://cdn.icon-icons.com/icons2/2622/PNG/512/book_icon_158035.png"
+          />
+          <h1 className={styles.title}>Genesis Book</h1>
+          <SearchBar onSearch={handleSearch} />
+        </header>
+      </div>
       <section className={styles.carousel}>
         <div>
           <img
@@ -83,7 +110,7 @@ const Books = ({ initialBooks }) => {
         ))}
       </ul>
       {selectedBook && <BookDetails book={selectedBook} onClose={closeModal} />}
-     <Footer />
+      <Footer />
     </div>
   );
 };
