@@ -1,6 +1,6 @@
 <h1 align="center">📚 Genesis Book 📚</h1>
 
-<p>Este projeto é uma aplicação web desenvolvida em React que permite aos usuários visualizar uma lista de livros obtida da API do Google Books.</p>
+<p>Este projeto é uma aplicação web desenvolvida em React e Next.js que permite aos usuários visualizar uma lista de livros obtida da API do Google Books.</p>
 
 <p>O projeto é composto por três componentes principais: Books, BookDetails e Header, além do componente Footer para o rodapé da página.</p>
 
