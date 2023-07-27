@@ -1,0 +1,23 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fc9621;
+  height: 80px;
+}
+
+.logoFooter {
+  width: 50px;
+  margin-left: 10px;
+}
+
+.logoFooterRedes {
+  background: #fc9621;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.titleFooter {
+  color: #000000;
+  font-size: 1.5rem;
+}
