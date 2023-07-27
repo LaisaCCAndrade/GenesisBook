@@ -33,7 +33,7 @@
 - Faça o clone deste repositório para o seu computador utilizando o comando:
 
 ```bash
-git clone https://github.com/LaisaCCAndrade/GenesisBook
+git clone git@github.com:LaisaCCAndrade/GenesisBook.git
 ```
 
 ## Navegue até o diretório do projeto
